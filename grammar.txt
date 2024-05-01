@@ -1,0 +1,15 @@
+Program -> Statements
+Statements -> Statement | Statements Statement
+Statement -> Assignment | PrintStatement | InputStatement
+Assignment -> Variable = Expression
+PrintStatement -> print(Expression)
+InputStatement -> input(Variable)
+Expression -> Term | Expression Operator Term | Variable
+Term -> Value | Operator Value
+Value -> Literal | Variable
+Literal -> (NumericLiteral | StringLiteral)
+Variable -> Identifier
+Operator -> + | - | * | /
+NumericLiteral -> (Number)
+StringLiteral -> (String)
+Identifier -> (Identifier)
