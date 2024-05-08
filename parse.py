@@ -68,6 +68,7 @@ class Parser:
         self.tokens = tokens
         self.current_token = None
         self.index = 0
+        self.variables = {}
 
     def parse(self):
         self.advance()
@@ -90,9 +91,15 @@ class Parser:
         if self.current_token.token_type == 'IDENTIFIER':
             identifier = self.current_token.value
             self.match('IDENTIFIER')  
-            self.match('ASSIGNMENT')  
-            value = self.parse_expression() 
-            return AssignmentStatementNode(identifier, value)
+
+            if self.current_token.token_type == 'ASSIGNMENT':
+                self.match('ASSIGNMENT')  
+                value = self.parse_expression() 
+                self.variables[identifier] = value
+                
+                return AssignmentStatementNode(identifier, value)
+            else:
+                raise SyntaxError("Invalid statement")
         elif self.current_token.token_type == 'KEYWORD':
             if self.current_token.value == 'print':
                 return self.parse_print_statement()
@@ -113,7 +120,7 @@ class Parser:
         return InputStatementNode(prompt)
 
     def parse_expression(self):
-        return self.parse_binary_operation()  # Currently only binary operations supported
+        return self.parse_binary_operation() 
 
     def parse_binary_operation(self):
         left = self.parse_primary()
@@ -135,13 +142,18 @@ class Parser:
             return StringNode(value)
         elif self.current_token.token_type == 'IDENTIFIER':
             name = self.current_token.value
+
+            # Check if variable is defined
+            if name not in self.variables:
+                raise SyntaxError(f"Variable '{name}' is not defined")
+
             self.match('IDENTIFIER')
             return IdentifierNode(name)
         else:
             raise SyntaxError("Invalid expression")
 
 if __name__ == "__main__":
-    input_string = 'a =  1 - 1'
+    input_string = "a=1+1"
     tokenizer = Tokenizer()
     tokens = tokenizer.tokenize_input(input_string)
     print("TOKENS:")
