@@ -1,0 +1,71 @@
+a = 0 ;
+print("Enter your choice?");
+print("1 - addition");
+print("2 - subtraction");
+print("3 - multiplication");
+print("4 - division");
+print("5 - modulus");
+print("0 - exit");
+input(a);
+if(a == 1){
+    print("===ADDITION===");
+    n = 0;
+    t = 0;
+    print("Enter the first value: ");
+    input(n);print("Enter the second value: ");
+    input(t);e = n + t;print("result = ".e);
+    print("==END==");
+}
+else{}
+
+if(a==2){
+    print("===SUBTRACTION===");
+    n = 0;
+    t = 0;
+    print("Enter the first value: ");
+    input(n);print("Enter the second value: ");
+    input(t);e = n - t;
+    print("result = ".e);
+    print("==END==");
+}
+else {}
+
+if(a==3){
+    print("===MULTIPLICATION===");
+    n = 0;
+    t = 0;
+    print("Enter the first value: ");
+    input(n);print("Enter the second value: ");
+    input(t);
+    e = n * t;
+    print("result = ".e);
+    print("==END==");
+}
+else {}
+
+if(a==4){
+    print("===DIVISION===");
+    n = 0;
+    t = 0;
+    print("Enter the first value: ");
+    input(n);
+    print("Enter the second value: ");
+    input(t);
+    e = n / t;
+    print("result = ".e);
+    print("==END==");
+}
+else {}
+
+if(a==5){
+    print("===MODULUS===");
+    n = 0;
+    t = 0;
+    print("Enter the first value: ");
+    input(n);print("Enter the second value: ");
+    input(t);
+    e = n // t;
+    print("result = ".e);
+    print("==END==");
+}
+else {}
