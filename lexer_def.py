@@ -1,7 +1,7 @@
 #token -> (regEx, tag, priority)
 token_exprs = [
     (r'[ \t\n]+',               None,                0),
-    (r'#[^\n]*',               None,                0),     
+    (r'#[^\n]*',                None,                0),     
 
     (r'\+\+',                   "INC",               8),
     (r'\+=',                    "PLUS_ASSIGN",       1),

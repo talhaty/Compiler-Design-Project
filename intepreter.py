@@ -13,13 +13,15 @@ class Interpreter:
             return (None, None)
 
     def process(self):
+        # print(self.policy)
         while self.pos < len(self.policy):
+            # print(self.stack)
             self.stack.append(self.policy[self.pos])
             self.pos += 1
 
             if self.stackEnd()[1] == "#":
                 self.pos = self.stack.pop()[0]
-            elif self.stackEnd()[1] == "!F":
+            elif self.stackEnd()[1] == "IF":
                 adr = self.stack.pop()[0]
                 if not self.stackEnd()[0]:
                     self.pos = adr

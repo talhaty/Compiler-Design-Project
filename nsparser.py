@@ -9,7 +9,15 @@ class Parser:
         self.addrsForFilling  = [] #save the policy address
         self.addrsJumps  = [] #saves addresses (arrays) for jumps
         self.calls = [] 
-
+        # print(tokens)
+    def showValues(self):
+        print(f"\n\n")
+        print(f"self.pos\n{self.pos}")
+        print(f"self.policy\n{self.policy}")
+        print(f"self.buffer\n{self.buffer}")
+        print(f"self.addrsForFilling\n{self.addrsForFilling}")
+        print(f"self.addrsJumps\n{self.addrsJumps}")
+        print(f"self.calls\n{self.calls}")
     def parseExeption(self, expected, detected):
         print("\nParse error: detected " + "'" + detected + "', but " + "'" + expected + "' are expected!")
         exit(0)
@@ -402,6 +410,7 @@ class Parser:
     def pushInStack(self, el):
         #print(self.policy)
         #print(str(self.buffer) + "\n====")
+        # self.showValues()
         if (el[1] in 
         ["INT", "FLOAT", "BOOL", "ID", "STRING"]):
             self.policy.append( (el[0], el[1]) )
@@ -430,9 +439,9 @@ class Parser:
                 self.buffer.pop()
                 lastCall = self.calls.pop()
                 if (lastCall == "IF"):
-                    self.policy[self.addrsForFilling.pop()] = (len(self.policy) + 1, "!F") 
+                    self.policy[self.addrsForFilling.pop()] = (len(self.policy) + 1, "IF") 
                 elif (lastCall == "ELSE"):
-                    self.policy[self.addrsForFilling.pop()] = (len(self.policy), "!")
+                    self.policy[self.addrsForFilling.pop()] = (len(self.policy), "ELSE")
                 else:
                     
                     self.policy.append( (None, None) )           

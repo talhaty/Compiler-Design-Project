@@ -1,0 +1,14 @@
+a = 1 ;
+print("hello");
+
+if(a == 0){
+    print("a == 0");
+    n = 1;
+    t = 2;
+    e = n + t;
+    print("result = ".e);
+    print("==END==");
+}
+else{
+  print("==END==");
+}
